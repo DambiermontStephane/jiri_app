@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="{!! app()->getLocale() !!}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,10 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-
-{!! $contact->name !!}
-{!! $contact->email !!}
-
-
+<h1> Créez un jiri </h1>
 </body>
 </html>

@@ -11,6 +11,7 @@ class JiriFactory extends Factory
         return [
             'name' => fake()->name(),
             'date' => fake()->date(),
+            'description' => fake()->optional()->text(),
         ];
     }
 }

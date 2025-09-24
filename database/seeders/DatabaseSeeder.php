@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Contact;
 use App\Models\Jiri;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
