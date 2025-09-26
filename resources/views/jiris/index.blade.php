@@ -8,8 +8,10 @@
     <title>Document</title>
 </head>
 <body>
+<h1>Liste des jiris</h1>
     @foreach($jiris as $jiri)
-        {!! $jiri->name !!}
+        <a href="/jiris/{!! $jiri->id !!}">{!! $jiri->name !!}</a>
     @endforeach
+<a href="{{ route('jiris.create') }}">{{ __('create_button.create_a_jiri') }}</a>
 </body>
 </html>

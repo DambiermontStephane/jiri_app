@@ -9,8 +9,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resources([
+    'jiris' => JiriController::class,
+    'contacts' => ContactController::class,
+    'projects' => ProjectController::class
+]);
+
+
 // Jiris route
-Route::get('/jiris', [JiriController::class, 'index'])->name('jiris.index');
+/*Route::get('/jiris', [JiriController::class, 'index'])->name('jiris.index');
 Route::get('/jiris/create', [JiriController::class, 'create'])->name('jiris.create');
 Route::get('/jiris/{jiri}', [JiriController::class, 'show'])->name('jiris.show');
 Route::post('/jiris', [JiriController::class, 'store'])->name('jiris.store');
@@ -23,4 +30,4 @@ Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('con
 // Projects route
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
-Route::get('/projects/{projet}', [ProjectController::class, 'show'])->name('project.show');
+Route::get('/projects/{projet}', [ProjectController::class, 'show'])->name('project.show');*/

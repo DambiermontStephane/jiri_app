@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jiri;
+use Illuminate\Http\Request;
 
 class JiriController extends Controller
 {
@@ -13,9 +14,15 @@ class JiriController extends Controller
         return view('jiris.index', compact('jiris'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        Jiri::create(request()->all());
+        $validated = $request->validate([
+            'name' => 'required',
+            'date' => 'required|date',
+            'description' => 'nullable'
+        ]);
+
+        Jiri::create($validated);
 
         return redirect(route('jiris.index'));
     }

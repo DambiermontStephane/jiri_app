@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1 >Liste des jiris</h1>
     {!! $jiri->name !!}
 </body>
 </html>
