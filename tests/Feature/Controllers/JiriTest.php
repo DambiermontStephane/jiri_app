@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Jiri;
+use App\Models\Project;
 use Illuminate\Database\QueryException;
 use function Pest\Laravel\assertDatabaseEmpty;
 use function Pest\Laravel\assertDatabaseHas;
@@ -54,3 +55,22 @@ it('fails to create a new jiri in database when the date is invalid',
         assertDatabaseEmpty('jiris');
 
     });
+
+it('create a jiri with associate project', function () {
+    // Arrange
+    $form_data = Jiri::factory()->raw();
+    $form_data['projects'] = Project::factory()
+        ->count(3)
+        ->create()
+        ->pluck('id', 'id')
+        ->toArray();
+    // Act
+    $response = $this->post(route('jiris.store'), $form_data);
+    // Assert
+    $this->assertDatabaseCount('jiris', 1);
+    $this->assertDatabaseCount('homeworks', 3);
+});
+
+it('create a jiri with associate contact', function () {
+    $form_data = Jiri::factory()->raw();
+});

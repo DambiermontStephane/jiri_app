@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\ContactRoles;
 use App\Models\Contact;
+use App\Models\Homework;
 use App\Models\Jiri;
 use App\Models\Project;
 
@@ -66,7 +68,7 @@ it('Displays the complete list of projects on the project page', function () {
 it('Show a jiri details when click', function () {
     $jiri = Jiri::factory()->create();
 
-    $response = $this->get('/jiris/'.$jiri->id);
+    $response = $this->get('/jiris/' . $jiri->id);
 
     $response->assertStatus(200);
     $response->assertSee($jiri->name);
@@ -75,7 +77,7 @@ it('Show a jiri details when click', function () {
 it('Show a contact details when click', function () {
     $contact = Contact::factory()->create();
 
-    $response = $this->get('/contacts/'.$contact->id);
+    $response = $this->get('/contacts/' . $contact->id);
 
     $response->assertStatus(200);
 
@@ -86,9 +88,11 @@ it('Show a contact details when click', function () {
 it('Show a project details when click', function () {
     $project = Project::factory()->create();
 
-    $response = $this->get('/projects/'.$project->id);
+    $response = $this->get('/projects/' . $project->id);
 
     $response->assertStatus(200);
 
     $response->assertSee($project->name);
 });
+
+

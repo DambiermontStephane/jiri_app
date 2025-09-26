@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jiri;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class JiriController extends Controller
@@ -19,10 +20,12 @@ class JiriController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'date' => 'required|date',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'projects' => 'array'
         ]);
 
-        Jiri::create($validated);
+        $jiri = Jiri::create($validated);
+        $jiri->projects()->attach($validated['projects']);
 
         return redirect(route('jiris.index'));
     }

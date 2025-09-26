@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->foreignId('jiri_id')->constrained();
             $table->foreignId('contact_id')->constrained();
             $table->string('role');

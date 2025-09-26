@@ -10,19 +10,19 @@
     @endif
     <title>{!!__('headings.create_a_jiri')!!}</title>
 </head>
-<body class="px-4 py-6">
-<h1 class="text-2xl font-bold mb-5 text-center">{!!__('headings.create_a_jiri')!!}</h1>
+<body>
+<h1>{!!__('headings.create_a_jiri')!!}</h1>
 <form action="{{ route('jiris.store') }}" method="post" class="flex flex-col flex-1 justify-center items-center">
     @csrf
-    <div class="flex flex-1 gap-10 justify-center">
-        <div class="flex flex-col">
+    <div class="flex flex-col flex-1">
+        <div>
             <p class="font-bold">Information du jiri</p>
-            <x-label-input name="name" type="text" label="Nom" required class="flex flex-row-reverse"></x-label-input>
-            <x-label-input name="date" type="date" label="Date" required class="flex flex-row-reverse"></x-label-input>
-            <x-label-input name="description" type="text" label="Description" class="flex flex-row-reverse"></x-label-input>
+            <x-label-input name="name" type="text" label="Nom" required ></x-label-input>
+            <x-label-input name="date" type="date" label="Date" required></x-label-input>
+            <x-label-input name="description" type="text" label="Description"></x-label-input>
         </div>
-        <div class="flex flex-col gap-2">
-            <div class="border-l-2 border-black pl-10">
+        <div>
+            <div class="flex flex-1">
                 <p class="font-bold">Ajoutez des contacts</p>
                 <div class="flex">
                     <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
@@ -32,7 +32,7 @@
                         <option value="evaluator">Evaluateur</option>
                     </select>
                 </div>
-                <div class="flex">
+                <div>
                     <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
@@ -40,7 +40,15 @@
                         <option value="evaluator">Evaluateur</option>
                     </select>
                 </div>
-                <div class="flex">
+                <div>
+                    <x-label-input name="name" type="checkbox" label="Pruneau"></x-label-input>
+                    <select name="role" id="role_select">
+                        <option value="role">Rôle</option>
+                        <option value="student">Étudiant</option>
+                        <option value="evaluator">Evaluateur</option>
+                    </select>
+                </div>
+                <div>
                     <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
@@ -48,15 +56,7 @@
                         <option value="evaluator">Evaluateur</option>
                     </select>
                 </div>
-                <div class="flex">
-                    <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
-                    <select name="role" id="role_select">
-                        <option value="role">Rôle</option>
-                        <option value="student">Étudiant</option>
-                        <option value="evaluator">Evaluateur</option>
-                    </select>
-                </div>
-                <div class="flex">
+                <div>
                     <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
@@ -66,9 +66,9 @@
                 </div>
             </div>
         </div>
-        <div class="border-l-2 border-black pl-10">
-            <p class="font-bold">Vos projets</p>
-            <div class="flex gap-20">
+        <div>
+            <p>Vos projets</p>
+            <div>
                 <x-label-input name="cv" type="checkbox" label="CV"></x-label-input>
                 <input type="number" id="cv" name="cv">
             </div>

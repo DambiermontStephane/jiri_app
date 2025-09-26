@@ -19,6 +19,16 @@ class Jiri extends Model
         return $this->belongsToMany(Contact::class, 'attendances');
     }
 
+    function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'homeworks');
+    }
+
+    function homeworks(): HasMany
+    {
+        return $this->hasMany(Homework::class);
+    }
+
     function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class);

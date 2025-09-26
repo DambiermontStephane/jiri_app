@@ -10,7 +10,6 @@ return new class extends Migration {
         Schema::create('homeworks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('jiri_id')->constrained();
-            $table->foreignId('contact_id')->constrained();
             $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
