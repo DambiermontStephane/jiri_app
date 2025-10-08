@@ -71,6 +71,6 @@ it('create a jiri with associate project', function () {
     $this->assertDatabaseCount('homeworks', 3);
 });
 
-it('create a jiri with associate contact', function () {
+it('create a jiri with associate contacts and projects', function () {
     $form_data = Jiri::factory()->raw();
 });

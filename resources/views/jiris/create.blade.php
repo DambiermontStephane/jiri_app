@@ -12,18 +12,18 @@
 </head>
 <body>
 <h1>{!!__('headings.create_a_jiri')!!}</h1>
-<form action="{{ route('jiris.store') }}" method="post" class="flex flex-col flex-1 justify-center items-center">
+<form action="{{ route('jiris.store') }}" method="post">
     @csrf
-    <div class="flex flex-col flex-1">
+    <div>
         <div>
-            <p class="font-bold">Information du jiri</p>
-            <x-label-input name="name" type="text" label="Nom" required ></x-label-input>
+            <p>Information du jiri</p>
+            <x-label-input name="name" type="text" label="Nom" required></x-label-input>
             <x-label-input name="date" type="date" label="Date" required></x-label-input>
             <x-label-input name="description" type="text" label="Description"></x-label-input>
         </div>
         <div>
-            <div class="flex flex-1">
-                <p class="font-bold">Ajoutez des contacts</p>
+            <div>
+                <p>Ajoutez des contacts</p>
                 <div class="flex">
                     <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
                     <select name="role" id="role_select">
@@ -72,18 +72,17 @@
                 <x-label-input name="cv" type="checkbox" label="CV"></x-label-input>
                 <input type="number" id="cv" name="cv">
             </div>
-            <div class="flex gap-20">
+            <div>
                 <x-label-input name="portfolio" type="checkbox" label="Portfolio"></x-label-input>
                 <input type="number" id="portfolio" name="portfolio">
             </div>
-            <div class="flex gap-20">
+            <div>
                 <x-label-input name="site_client" type="checkbox" label="Site Client"></x-label-input>
                 <input type="number" id="site_client" name="site_client">
             </div>
         </div>
     </div>
-    <button type="submit"
-            class="bg-gray-200 rounded-xs px-1.5 py-1 mt-5 hover:bg-black w-25">{{__('labels_buttons.create_a_jiri')}}</button>
+    <button type="submit">{{__('labels_buttons.create_a_jiri')}}</button>
 </form>
 </body>
 </html>
