@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="{!! app()->getLocale() !!}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

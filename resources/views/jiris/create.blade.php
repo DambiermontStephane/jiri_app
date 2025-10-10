@@ -17,15 +17,15 @@
     <div>
         <div>
             <p>Information du jiri</p>
-            <x-label-input name="name" type="text" label="Nom" required></x-label-input>
-            <x-label-input name="date" type="date" label="Date" required></x-label-input>
-            <x-label-input name="description" type="text" label="Description"></x-label-input>
+            <x-form.label-input name="name" type="text" label="Nom" required></x-form.label-input>
+            <x-form.label-input name="date" type="date" label="Date" required></x-form.label-input>
+            <x-form.label-input name="description" type="text" label="Description"></x-form.label-input>
         </div>
         <div>
             <div>
                 <p>Ajoutez des contacts</p>
                 <div class="flex">
-                    <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
+                    <x-form.label-input name="name" type="checkbox" label="Bruno"></x-form.label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
                         <option value="student">Étudiant</option>
@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div>
-                    <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
+                    <x-form.label-input name="name" type="checkbox" label="Bruno"></x-form.label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
                         <option value="student">Étudiant</option>
@@ -41,7 +41,7 @@
                     </select>
                 </div>
                 <div>
-                    <x-label-input name="name" type="checkbox" label="Pruneau"></x-label-input>
+                    <x-form.label-input name="name" type="checkbox" label="Pruneau"></x-form.label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
                         <option value="student">Étudiant</option>
@@ -49,7 +49,7 @@
                     </select>
                 </div>
                 <div>
-                    <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
+                    <x-form.label-input name="name" type="checkbox" label="Bruno"></x-form.label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
                         <option value="student">Étudiant</option>
@@ -57,7 +57,7 @@
                     </select>
                 </div>
                 <div>
-                    <x-label-input name="name" type="checkbox" label="Bruno"></x-label-input>
+                    <x-form.label-input name="name" type="checkbox" label="Bruno"></x-form.label-input>
                     <select name="role" id="role_select">
                         <option value="role">Rôle</option>
                         <option value="student">Étudiant</option>
@@ -69,15 +69,15 @@
         <div>
             <p>Vos projets</p>
             <div>
-                <x-label-input name="cv" type="checkbox" label="CV"></x-label-input>
+                <x-form.label-input name="cv" type="checkbox" label="CV"></x-form.label-input>
                 <input type="number" id="cv" name="cv">
             </div>
             <div>
-                <x-label-input name="portfolio" type="checkbox" label="Portfolio"></x-label-input>
+                <x-form.label-input name="portfolio" type="checkbox" label="Portfolio"></x-form.label-input>
                 <input type="number" id="portfolio" name="portfolio">
             </div>
             <div>
-                <x-label-input name="site_client" type="checkbox" label="Site Client"></x-label-input>
+                <x-form.label-input name="site_client" type="checkbox" label="Site Client"></x-form.label-input>
                 <input type="number" id="site_client" name="site_client">
             </div>
         </div>
