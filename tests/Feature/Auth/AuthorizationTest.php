@@ -1,5 +1,5 @@
 <?php
 
-it('authorize a jiri to update a post', function () {
-
-});
+//it('authorize a jiri to update a post', function () {
+//
+//});

@@ -2,6 +2,14 @@
 
 use App\Models\Jiri;
 use App\Models\Project;
+use App\Models\User;
+
+beforeEach(
+    function () {
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user);
+    }
+);
 
 it('redirect to the jiri index route after the successful creation of a jiri', function () {
     // Arrange
@@ -17,5 +25,5 @@ it('redirect to the jiri index route after the successful creation of a jiri', f
 
     // Assert
     $response->assertStatus(302);
-    $response->assertRedirect('/jiris');
+    $response->assertRedirect(route('jiris.index'));
 });

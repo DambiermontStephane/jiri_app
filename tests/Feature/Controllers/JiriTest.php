@@ -2,19 +2,35 @@
 
 use App\Models\Jiri;
 use App\Models\Project;
-use Illuminate\Database\QueryException;
+use App\Models\User;
 use function Pest\Laravel\assertDatabaseEmpty;
 use function Pest\Laravel\assertDatabaseHas;
+
+beforeEach(
+    function () {
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user);
+    }
+);
 
 it('creates successfully Jiri from data providing by the request', function () {
     // Arrange
     $jiri = Jiri::factory()->raw();
-
     // Act
-    $response = $this->post('/jiris', $jiri);
-
+    $response = $this->post(route('jiris.index'), $jiri);
     // Assert
-    assertDatabaseHas('jiris', $jiri);
+    $this->assertDatabaseHas('jiris', $jiri);
+});
+
+it('see if a connected user have is linked with a jiri', function () {
+    // Arrange
+    $user = User::factory()->create();
+    $this->actingAs($user);
+    $jiri = Jiri::factory()->raw();
+    // Act
+    $response = $this->post(route('jiris.store'), $jiri);
+    // Assert
+    expect($user->jiris)->toHaveCount(1);
 });
 
 it('fails to create a new jiri in database when there are missing date in the request',
@@ -69,8 +85,4 @@ it('create a jiri with associate project', function () {
     // Assert
     $this->assertDatabaseCount('jiris', 1);
     $this->assertDatabaseCount('homeworks', 3);
-});
-
-it('create a jiri with associate contacts and projects', function () {
-    $form_data = Jiri::factory()->raw();
 });

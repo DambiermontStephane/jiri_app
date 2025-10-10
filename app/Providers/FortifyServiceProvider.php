@@ -6,11 +6,13 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
 
@@ -45,12 +47,22 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
+        RedirectIfAuthenticated::redirectUsing(function () {
+            return route('jiris.index');
+        });
+
         Fortify::loginView(function () {
             return view('auth.login');
         });
 
         Fortify::registerView(function () {
             return view('auth.register');
+        });
+
+        Password::defaults(function () {
+            $rule = Password::min(16);
+
+            return $this->app->isProduction() ? $rule->mixedCase()->uncompromised(): $rule;
         });
     }
 }

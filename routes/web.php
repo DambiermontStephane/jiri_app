@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware('auth')->group(function () {
+    Route::resources([
+        'jiris' => JiriController::class,
+        'contacts' => ContactController::class,
+        'projects' => ProjectController::class
+    ]);
+});
 
-Route::resources([
-    'jiris' => JiriController::class,
-    'contacts' => ContactController::class,
-    'projects' => ProjectController::class
-]);
 
 
 // Jiris route

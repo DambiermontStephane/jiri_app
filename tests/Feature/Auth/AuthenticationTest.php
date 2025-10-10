@@ -29,6 +29,6 @@ it('register a new account', function () {
     $response = $this->post(route('register.store'), $user);
 
     $response->assertStatus(302);
-    $response->assertRedirect('jiris.index');
+    $response->assertRedirect(route('jiris.index'));
 });
 
