@@ -35,10 +35,10 @@ it('Displays the complete list of jiris for a user', function () {
 
 });
 
-it('Show a jiri details when click', function () {
+it('Show a jiri details when click, for a user', function () {
     $jiri = Jiri::factory()->for(auth()->user())->create();
 
-    $response = $this->get('/jiris/' . $jiri->id);
+    $response = $this->get(route('jiris.index') . '/' . $jiri->id);
 
     $response->assertStatus(200);
     $response->assertSee($jiri->name);
