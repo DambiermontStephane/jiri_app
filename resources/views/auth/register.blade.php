@@ -19,6 +19,7 @@
                         <a href="#" class="text-blue-500 text-sm">Mot de passe oublié ?</a>
                     </div>
                     <button type="submit" class="text-white bg-blue-500 rounded-sm p-2 w-full">S'inscrire</button>
+                    <p>Déjà un compte ? <a href="{{ route('login.store') }}" class="text-blue-500">Se connecter</a></p>
                 </div>
             </form>
         </div>

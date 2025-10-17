@@ -10,7 +10,14 @@
     @endif
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
-<body>
-{{ $slot }}
+<body class="max-h-dvh">
+    <header>
+        @auth
+            <x-nav.main></x-nav.main>
+        @endauth
+    </header>
+    <main>
+        {{ $slot }}
+    </main>
 </body>
 </html>

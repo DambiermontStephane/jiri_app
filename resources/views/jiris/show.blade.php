@@ -1,14 +1,11 @@
-<!doctype html>
-<html lang="{!! app()->getLocale() !!}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1 >Liste des jiris</h1>
-    {!! $jiri->name !!}
-</body>
-</html>
+<x-layouts.app>
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">{!! $jiri->name !!}</h1>
+
+    <div class="max-w-2xl mx-auto bg-white shadow-md rounded-2xl p-6 space-y-4">
+        <p class="text-sm font-semibold text-gray-500 uppercase">Date</p>
+        <p class="text-lg text-gray-700">{!! $jiri->date !!}</p>
+
+        <p class="text-sm font-semibold text-gray-500 uppercase">Brève description</p>
+        <p class="text-gray-700 leading-relaxed">{!! $jiri->description !!}</p>
+    </div>
+</x-layouts.app>

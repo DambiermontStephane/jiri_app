@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class label-option extends Component
+class labelOption extends Component
 {
     /**
      * Create a new component instance.

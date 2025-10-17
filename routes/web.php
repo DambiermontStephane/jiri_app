@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\JiriController;
 use App\Http\Controllers\ProjectController;
@@ -13,11 +14,9 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'jiris' => JiriController::class,
         'contacts' => ContactController::class,
-        'projects' => ProjectController::class
+        'projects' => ProjectController::class,
     ]);
 });
-
-
 
 // Jiris route
 /*Route::get('/jiris', [JiriController::class, 'index'])->name('jiris.index');

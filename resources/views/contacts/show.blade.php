@@ -1,17 +1,37 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<x-layouts.app>
+    <section class="flex flex-col justify-center items-center h-screen shadow-lg">
+        <h1 class="text-center text-3xl font-bold mb-8 text-gray-800">Information de {{ $contact->name }}</h1>
+        <div class="flex justify-center items-center flex-col">
+            <div class="flex flex-col gap-4 bg-white shadow-lg rounded-2xl p-6 w-full max-w-md text-gray-800">
 
-{!! $contact->name !!}
-{!! $contact->email !!}
+                @if($contact->avatar == null)
+                    <p class="text-gray-400 italic text-center">Aucun avatar disponible</p>
+                @else
+                    <img
+                        class="w-50 h-50 object-cover rounded-full mx-auto border-4 border-indigo-500 shadow-md aspect-auto"
+                        src="{{ asset('storage/' . $contact->avatar) }}"
+                        alt="Avatar de {{ $contact->name }}">
+                @endif
 
+                <div class="flex flex-col text-center mt-4">
+                    <p class="text-gray-500 text-sm">Adresse e-mail:</p>
+                    <p class="font-medium text-lg">{{ $contact->email }}</p>
+                </div>
 
-</body>
-</html>
+                <div class="flex flex-col text-center">
+                    <p class="text-gray-500 text-sm">Numéro de téléphone:</p>
+                    <p class="font-medium text-lg">
+                    @if($contact->tel == null)
+                        <p class="text-gray-400 italic text-center">Aucun numéro spécifé</p>
+                        @else
+                            {{ $contact->tel }}
+                        @endif
+                </div>
+                    <div class="flex justify-between border-t mt-2 p-1">
+                        <x-destroy action="{{ route('contacts.destroy', compact('contact')) }}" text="Supprimer"></x-destroy>
+                        <a href="{{ route('contacts.edit', compact('contact')) }}">Éditer</a>
+                    </div>
+            </div>
+        </div>
+    </section>
+</x-layouts.app>

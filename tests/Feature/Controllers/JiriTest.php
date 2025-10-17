@@ -72,10 +72,11 @@ it('fails to create a new jiri in database when the date is invalid',
 
     });
 
-it('create a jiri with associate project', function () {
+it('create a jiri with associate project for a user', function () {
     // Arrange
     $form_data = Jiri::factory()->raw();
     $form_data['projects'] = Project::factory()
+        ->for(auth()->user())
         ->count(3)
         ->create()
         ->pluck('id', 'id')

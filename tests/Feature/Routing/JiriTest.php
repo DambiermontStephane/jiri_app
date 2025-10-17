@@ -15,6 +15,7 @@ it('redirect to the jiri index route after the successful creation of a jiri', f
     // Arrange
     $jiri = Jiri::factory()->raw();
     $jiri['projects'] = Project::factory()
+        ->for(auth()->user())
         ->count(3)
         ->create()
         ->pluck('id', 'id')

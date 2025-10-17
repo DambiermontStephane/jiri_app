@@ -60,7 +60,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Password::defaults(function () {
-            $rule = Password::min(16);
+            $rule = Password::min(4);
 
             return $this->app->isProduction() ? $rule->mixedCase()->uncompromised(): $rule;
         });

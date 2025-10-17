@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'test'
         ]);
 
-        Jiri::factory(5)->create();
+        Jiri::factory(5)->for($user)->create();
     }
 }
