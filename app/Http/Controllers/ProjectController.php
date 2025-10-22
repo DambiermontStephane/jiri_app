@@ -15,7 +15,9 @@ class ProjectController extends Controller
 
     public function store()
     {
-        Project::create(request()->all());
+        $data = Project::create(request()->all());
+
+        $project = auth()->user()->projects()->create($data);
 
         return redirect(route('projects.index'));
     }

@@ -11,7 +11,7 @@ beforeEach(
 );
 
 it('Displays the complete list of projects on the project page', function () {
-    $projects = Project::factory()->create();
+    $projects = Project::factory()->for(auth()->user())->create();
 
     $response = $this->get(route('projects.index'));
 
@@ -23,7 +23,7 @@ it('Displays the complete list of projects on the project page', function () {
 });
 
 it('Show a project details when click', function () {
-    $project = Project::factory()->create();
+    $project = Project::factory()->for(auth()->user())->create();
 
     $response = $this->get('/projects/' . $project->id);
 

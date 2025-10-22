@@ -2,33 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactAvatarRequest;
+use App\Jobs\ProcessUploadedContactAvatar;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
-use phpDocumentor\Reflection\Types\Mixed_;
-use PhpParser\Node\Scalar\String_;
 
 class ContactController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreContactAvatarRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'tel' => 'nullable',
-            'avatar' => 'nullable|image'
-        ]);
+        $validated = $request->validated();
+        $new_original_file_name = uniqid('', true) . config('contactsavatars.avatar_type');
+        $full_path_to_of_original = Storage::disk('public')->putFileAs(config('contactsavatars.original_path'), $validated['avatar'], $new_original_file_name);
 
-        if ($request->hasFile('avatar')) {
-            $image = Image::read($validated['avatar'])
-                ->resize(300, 300)
-                ->toJpeg(80);
-
-            $file_name = 'contact_' . uniqid() . '_300x300.jpg';
-            $path = "contacts/$file_name";
-            Storage::disk('public')->put($path, $image->toString());
-            $validated['avatar'] = $path;
+        if ($validated['avatar']) {
+            if ($full_path_to_of_original) {
+                $validated['avatar'] = $new_original_file_name;
+                ProcessUploadedContactAvatar::dispatch($full_path_to_of_original, $new_original_file_name);
+            }
+            else {
+                $validated['avatar'] = '';
+            }
         }
 
         $contact = auth()->user()->contacts()->create($validated);
@@ -55,27 +50,27 @@ class ContactController extends Controller
         return view('contacts.create');
     }
 
-    public function destroy(Contact $contact)
-    {
-        Contact::destroy($contact->id);
-        return redirect(route('contacts.index'));
-    }
-
-    public function edit(String $id)
+    public function edit(string $id)
     {
         $contact = Contact::findOrFail($id);
         return view('contacts.edit', compact('contact'));
     }
 
-    public function update(Request $request, String $id)
+    public function update(Request $request, string $id)
     {
         $contact = Contact::findOrFail($id);
         $contact->name = $request->input('name');
         $contact->email = $request->input('email');
-        $contact->avatar = $request->input('storage/contacts'. $contact->avatar);
+        $contact->avatar = $request->input('avatar');
         $contact->tel = $request->input('tel');
 
         $contact->save();
         return redirect(route('contacts.show', compact('contact')));
+    }
+
+    public function destroy(Contact $contact)
+    {
+        Contact::destroy($contact->id);
+        return redirect(route('contacts.index'));
     }
 }

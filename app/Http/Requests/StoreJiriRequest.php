@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreJiriRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'name' => 'required',
+            'date' => 'required|date',
+            'description' => 'nullable',
+            'projects' => 'array|nullable'
+        ];
+    }
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+}

@@ -12,11 +12,11 @@ beforeEach(
 );
 
 it('creates a Project and redirect to the project index', function () {
-    $project = Project::factory()->raw();
+    $project = Project::factory()->for($this->user)->make()->toArray();
 
     $response = $this->post(route('projects.store'), $project);
 
-    $response->assertStatus(302);
-    assertDatabaseHas('projects', $project);
     $response->assertRedirect(route('projects.index'));
+    assertDatabaseHas('projects', $project);
+    $response->assertStatus(302);
 });

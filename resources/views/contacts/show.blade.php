@@ -8,7 +8,7 @@
                     <p class="text-gray-400 italic text-center">Aucun avatar disponible</p>
                 @else
                     <img
-                        class="w-50 h-50 object-cover rounded-full mx-auto border-4 border-indigo-500 shadow-md aspect-auto"
+                        class="w-50 h-50 object-cover rounded-full mx-auto border-4 border-gray-500 shadow-md aspect-auto"
                         src="{{ asset('storage/' . $contact->avatar) }}"
                         alt="Avatar de {{ $contact->name }}">
                 @endif

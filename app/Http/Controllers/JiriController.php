@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JiriCreatedEvent;
+use App\Http\Requests\StoreJiriRequest;
+use App\Mail\JiriCreatedMail;
 use App\Models\Jiri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class JiriController extends Controller
 {
@@ -14,17 +18,14 @@ class JiriController extends Controller
         return view('jiris.index', compact('jiris'));
     }
 
-    public function store(Request $request)
+    public function store(StoreJiriRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'date' => 'required|date',
-            'description' => 'nullable',
-            'projects' => 'array|nullable'
-        ]);
+        $validated = $request->validated();
 
         $jiri = auth()->user()->jiris()->create($validated);
         $jiri->projects()->attach($validated['projects']);
+
+        event(new JiriCreatedEvent($jiri));
 
         return redirect(route('jiris.index'));
     }

@@ -14,15 +14,17 @@ beforeEach(
 
 it('is possible to retrieve many evaluated and many evaluator from a Jiri',
     function () {
-        $jiri = Jiri::factory()
+        $jiri = Jiri::factory()->for($this->user)
             ->hasAttached(
-                Contact::factory()->count(7),
+                Contact::factory()->for($this->user)
+                    ->count(7),
                 ['role' => ContactRoles::Evaluated->value]
             )
             ->hasAttached(
-                Contact::factory()->count(3),
+                Contact::factory()->for($this->user)
+                    ->count(3),
                 ['role' => ContactRoles::Evaluators->value]
-            )->for(auth()->user())
+            )
             ->create();
 
         $this->assertDatabaseCount('attendances', 10);

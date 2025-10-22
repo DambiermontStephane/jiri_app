@@ -11,19 +11,19 @@ beforeEach(
 );
 
 it('Displays the complete list of contacts on the contact page', function () {
-    $contacts = Contact::factory(10)->create();
+    $contacts = Contact::factory(10)->for($this->user)->create();
 
     $response = $this->get('/contacts');
 
     $response->assertStatus(200);
 
     foreach ($contacts as $contact) {
-        $response->assertSee($contact->email);
+        $response->assertSee($contact->name);
     }
 });
 
 it('Show a contact details when click', function () {
-    $contact = Contact::factory()->create();
+    $contact = Contact::factory()->for($this->user)->create();
 
     $response = $this->get('/contacts/' . $contact->id);
 
